@@ -4,11 +4,13 @@ const crypto = require('crypto');
 app.use(express.json());
 const posts = {};
 app.get('/posts', (req, res) => {
-    res.json({"testpost": "res from /posts"})
-});
+    res.json({"recivedFrom": "From Get Function "})
+})
 app.post('/posts', (req, res,) => {
     const id = crypto.randomBytes(4).toString('hex')
+    console.log(req.body)
     const {title} = req.body;
+    console.log("tesghfhhgting")
     posts[id] = {
         id,  // Shorthand for id: id
         title  // Shorthand for id: id
