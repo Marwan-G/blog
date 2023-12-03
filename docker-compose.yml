@@ -15,3 +15,18 @@ services:
             - node_modules/
         - action: rebuild
           path: ./posts/package.json
+  comments:
+    build:
+      context: ./comments
+    command: npm start
+    ports:
+      - "4001:4001"
+    develop:
+      watch:
+        - action: sync
+          path: ./comments
+          target: /src/web
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./comments/package.json

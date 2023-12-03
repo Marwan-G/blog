@@ -1,10 +1,11 @@
 FROM node:lts-alpine
-ENV NODE_ENV=production
+ENV NODE_ENV=develop
+#USER node
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --silent && mv node_modules ../
-COPY . .
-EXPOSE 4000
-# RUN chown -R node /usr/src/app
-USER node
+COPY   ["package.json", "package-lock.json*", "./"]
+RUN npm install
+COPY   . .
+#--chown=node:node
+EXPOSE 4001
+#RUN chown -R node /usr/src/app
 CMD ["node", "index.js"]
