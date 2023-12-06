@@ -9,8 +9,8 @@ services:
     develop:
       watch:
         - action: sync
-          path: ./posts
-          target: /src/web
+          path: ./posts/index.js
+          target: /usr/src/app/index.js
           ignore:
             - node_modules/
         - action: rebuild
@@ -25,7 +25,7 @@ services:
       watch:
         - action: sync
           path: ./comments
-          target: /src/web
+          target: /usr/src/app
           ignore:
             - node_modules/
         - action: rebuild

@@ -9,13 +9,16 @@ app.get('/posts', (req, res) => {
 app.post('/posts', (req, res,) => {
     const id = crypto.randomBytes(4).toString('hex')
     const {title} = req.body;
+    console.log("amazing marwan mussa ghubein");
+  
     posts[id] = {
-        id,  // Shorthand for id: id
+        id,  // Shorthand for id:
         title  // Shorthand for id: id
     };
+
     res.status(201).json(posts[id])
 });
 
 app.listen(4000, () => {
-    console.log("App up and listening on Port 4000")
+    console.log("Posts up and listening on Port 4000")
 })
