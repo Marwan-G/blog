@@ -30,3 +30,18 @@ services:
             - node_modules/
         - action: rebuild
           path: ./comments/package.json
+  client:
+    build:
+      context: ./client
+    command: npm start
+    ports:
+      - "3000:3000"
+    develop:
+      watch:
+        - action: sync
+          path: ./client
+          target: /app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./client/package.json
