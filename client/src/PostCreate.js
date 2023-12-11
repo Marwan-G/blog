@@ -1,5 +1,7 @@
 import React from "react";
 
 export default () => {
-    return <div> Blog App From component hhhh</div>;
+    return <div>
+
+    </div>;
 };
