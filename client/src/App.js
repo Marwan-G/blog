@@ -1,6 +1,7 @@
 import React from "react";
 import PostCreate from "./PostCreate";
 import PostList from "./PostList";
+import CommentCreate from "./CommentCreate";
 
 export default () => {
     return <div className="container">
