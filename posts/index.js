@@ -16,6 +16,7 @@ app.post('/posts', (req, res,) => {
         id,  // Shorthand for id:id
         title  // Shorthand for title:title
     };
+    console.log(posts)
     res.status(201).json(posts);
 });
 

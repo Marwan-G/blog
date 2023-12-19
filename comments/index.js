@@ -8,7 +8,7 @@ app.use(cors())
 const commentsByPostId = {};
 app.get('/posts/:id/comments', (req, res, next) => {
     const comments = commentsByPostId[req.params.id] || [];
-    res.send({"allcomments": comments})
+    res.send(comments)
 })
 app.post('/posts/:id/comments', (req, res, next) => {
     const commentId = crypto.randomBytes(4).toString('hex');
@@ -18,7 +18,7 @@ app.post('/posts/:id/comments', (req, res, next) => {
     comments.push({"id": commentId, content});
     commentsByPostId[req.params.id] = comments;
     // res.json({"commentsByPostId": commentsByPostId})
-    res.send(commentsByPostId)
+    res.send(comments)
 })
 
 app.listen(4001, () => console.log("comments service listen on Port 4001"))
