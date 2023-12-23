@@ -30,6 +30,21 @@ services:
             - node_modules/
         - action: rebuild
           path: ./comments/package.json
+  eventbus:
+    build:
+      context: ./eventbus
+    command: npm start
+    ports:
+      - "4005:4005"
+    develop:
+      watch:
+        - action: sync
+          path: ./eventbus
+          target: /usr/src/app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./eventbus/package.json
   client:
     build:
       context: ./client

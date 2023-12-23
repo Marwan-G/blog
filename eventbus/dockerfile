@@ -6,6 +6,6 @@ COPY   ["package.json", "package-lock.json*", "./"]
 RUN npm install
 COPY   . .
 #--chown=node:node
-EXPOSE 4000
+EXPOSE 4005
 #RUN chown -R node /usr/src/app
 CMD ["node", "index.js"]
