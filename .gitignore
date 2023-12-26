@@ -6,7 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
-
+*/node_modules
 /comments/node_modules
 posts/node_modules
 eventbus/node_modules
