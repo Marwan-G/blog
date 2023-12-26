@@ -33,16 +33,14 @@ app.post('/posts/:id/comments', async (req, res, next) => {
         }
     const url = 'http://eventbus:4005/events';
 
-
     await axios.post(url, data).then((res) => {
-        console.log("this is a resolved promese in Comments ", res)
+        console.log("this is a resolved promise in Comments ", res)
     }).catch((error) => {
         console.error("this is from catch in Comments", error)
     })
     res.status(201).send(comments);
 });
 app.post('/events', (req, res) => {
-    console.log("Event Received to Comments service from EventBus", req.body)
     res.json({
         status: req.body.data.title,
         comment: "event received  form eventbus into Comment Service on route /events"

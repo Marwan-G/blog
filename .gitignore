@@ -9,6 +9,9 @@ lerna-debug.log*
 
 /comments/node_modules
 posts/node_modules
+eventbus/node_modules
+moderation/node_modules
+query/node_modules
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

@@ -44,7 +44,6 @@ app.post('/posts', (req, res,) => {
 
     // console.log("Event response:", response.data);
 
-
     res.status(201).json(posts[id]);
 });
 

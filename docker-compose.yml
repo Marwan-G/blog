@@ -45,6 +45,21 @@ services:
             - node_modules/
         - action: rebuild
           path: ./eventbus/package.json
+  query:
+    build:
+      context: ./query
+    command: npm start
+    ports:
+      - "4002:4002"
+    develop:
+      watch:
+        - action: sync
+          path: ./query
+          target: /usr/src/app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./query/package.json
   client:
     build:
       context: ./client
