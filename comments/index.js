@@ -16,7 +16,7 @@ app.post('/posts/:id/comments', async (req, res, next) => {
 // comments from body + id params in an array
     const {content} = req.body;
     const comments = commentsByPostId[req.params.id] || [];
-    comments.push({id: commentId, content});
+    comments.push({id: commentId, content, status: 'pending'});
     commentsByPostId[req.params.id] = comments;
     // res.json({"commentsByPostId": commentsByPostId})
 
@@ -28,6 +28,7 @@ app.post('/posts/:id/comments', async (req, res, next) => {
             data: {
                 commentId,
                 content,
+                status: 'pending',
                 postId: req.params.id
             }
         }
@@ -40,11 +41,33 @@ app.post('/posts/:id/comments', async (req, res, next) => {
     })
     res.status(201).send(comments);
 });
-app.post('/events', (req, res) => {
-    res.json({
-        status: req.body.data.title,
-        comment: "event received  form eventbus into Comment Service on route /events"
-    })
+app.post('/events', async (req, res) => {
+    const {type, data} = req.body;
+    if (type === 'CommentModerated') {
+        const {postId, content, commentId, status} = data
+        const comments = commentsByPostId[data.postId]
+        comment = comments.find(comment => {
+            return comment.commentId === commentId
+
+        })
+        comment.status = status;
+
+        await axios.post('http://eventbus:4005/events', {
+            type: 'CommentUpdated',
+            data: {
+                postId,
+                content,
+                commentId,
+                status
+            }
+        }).catch((err) => {
+            console.log("here is the err Marwan", err)
+        })
+
+    }
+
+    res.send("event received  form eventbus into Comment Service on route /events"
+    );
 })
 
 app.listen(4001, () => console.log("comments service listen on Port 4001"));

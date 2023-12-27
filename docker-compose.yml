@@ -60,6 +60,21 @@ services:
             - node_modules/
         - action: rebuild
           path: ./query/package.json
+  moderation:
+    build:
+      context: ./moderation
+    command: npm start
+    ports:
+      - "4003:4003"
+    develop:
+      watch:
+        - action: sync
+          path: ./moderation
+          target: /usr/src/app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./moderation/package.json
   client:
     build:
       context: ./client
